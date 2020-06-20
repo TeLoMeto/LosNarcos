@@ -1,4 +1,139 @@
+<head>
+	<style>
+		*{
+	margin:0px;
+	padding:0px;
+	box-sizing: border-box;
+}
+nav{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	min-height: 8vh;
+	background-color: #5D4954;
+	font-family: 'Poppins', sans-serif;
+	z-index: 100;
+}
+.Logo{
+	color: #eeeeee;
+	letter-spacing: 5px;
+	font-size: 20px;
+}
+.navLinks{
+	display: flex;
+	justify-content: space-around;
+	width: 40%;
+}
+.navLinks li{
+	list-style: none;
+}
+.navLinks a{
+	text-decoration: none;
+	color: #eeeeee;
+	letter-spacing: 3px;
+	font-weight: bold;
+	font-size: 14px;
+}
+.burger{
+	display: none;
+}
+.burger div{
+	width: 35px;
+	height: 4px;
+	background-color: #eeeeee;
+	margin: 5px;
+	border-radius: 3px;
+	transition: all 0.3s ease;
+}
+.container{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;;
+}
+#p1{
+	background-image: url("https://nofilmschool.com/sites/default/files/styles/facebook/public/make_money_filmmaking.jpg?itok=UvZ4NioY");
+}
+#p2{
+	background-image: url("https://www.health.harvard.edu/media/content/images/p6_PIlls_L1907_gi943878650.jpg");
+}
+#p3{
+	background-image: url("https://media3.s-nbcnews.com/i/newscms/2020_14/1554952/hank-shake-continue-today-main-200403_fe1d3d927229f336440bea5c5d9b68a4.jpg");
+}
 
+.paralax{
+	position:relative;
+	background-size: cover;
+	background-attachment: fixed;
+	width: 100%;
+	height: 50vh;
+	z-index: 98;
+}
+
+.Info{
+	position: relative;
+	background-color: #eeeeee;
+	width: 100%;
+	height: 50vh;
+	padding: 25px;
+	z-index: 99;
+	box-shadow: 0px 5px 20px 5px #000000, 0px -5px 20px 5px #000000;
+}
+@media screen and (max-width:1024px){
+	.navLinks{
+	width: 60%;
+}
+
+@media screen and (max-width:650px){
+	body{
+		overflow-x: hidden;
+	}
+	.navLinks{
+		position: absolute;
+		right: 0px;
+		height: 92vh;
+		top: 8vh;
+		background-color: #5D4954;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 50%; 
+		transform: translateX(100%);
+		transition: transform 0.5s ease-in;
+		z-index: 100;
+	}
+	.navLinks li{
+		opacity: 0;
+	}
+	.burger{
+		display: block;
+		cursor: pointer;
+	}
+
+.nav-active{
+	transform: translateX(0%);
+}
+@keyframes linkFade{
+	from{
+		opacity: 0;
+		transform: translateX(50px);
+	}
+	to{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+.toggle .line1{
+	transform: rotate(-45deg) translate(-5px, 7.2px);
+}
+.toggle .line2{
+	opacity: 0;
+}
+.toggle .line3{
+	transform: rotate(45deg) translate(-5px, -7.2px);
+}
+
+
+	</style>
+</head>
+<body>
 	<nav>
 		<div class="Logo">
 			<h4>LOS NARCOS</h4>
@@ -61,4 +196,28 @@
 
 
 	</div>
-	
+	<script>
+			const navSlide = () => {
+	const burger = document.querySelector('.burger');
+	const nav = document.querySelector('.navLinks');
+	const navLinks = document.querySelectorAll('.navLinks li');
+
+	burger.addEventListener('click', () => {
+		nav.classList.toggle('nav-active');
+	navLinks.forEach((link, index) => {
+		if(link.style.animation) {
+			link.style.animation = '';
+		} else{
+			link.style.animation = `linkFade 0.5s ease forwards ${index / 4 + 0.3}s`;
+		}
+	});
+
+		burger.classList.toggle('toggle');
+
+	});
+}
+
+navSlide();
+
+	</script>
+</body>
